@@ -1,4 +1,8 @@
-<?php echo "hi"?>
+<?php 
+echo "aaaaaaa"
+
+?>
+
 <html>
 <head>
 
@@ -78,7 +82,7 @@
 <form method="POST" name="sample">
 
     <input type="text" name="task" id="textarea">
-    <input type="button" name="add" value="Save" class="btn">
+    <input type="button" name="add" value="Save" class="btn" id="save">
   </div>
 <br><br>
         <table id="tbl" class="table hide">
@@ -103,6 +107,9 @@
 
 const bob = document.querySelector(".table")
 let metra = 1;
+
+const save = document.getElementById("save");
+save.addEventListener("click", addResponse);
 
 function addResponse()
     {  
