@@ -1,6 +1,27 @@
 <?php 
 echo "aaaaaaa"
 
+
+//echo "This is a php message";
+//print_r($_POST);
+$no = $_POST['metra'];
+$task = $_POST['task'];
+$status = $_POST[''];
+
+//var_dump($task);
+
+//datebase connection
+$hostname = "localhost";
+$username = "root";
+$password = ""; 
+$dbname = "todoapp";
+
+//ftiakse connection
+$conn = new mysqli($hostname, $username, $password, $dbname);
+if($conn->connect_error){
+  die('Something went wrong: '.$conn->connect_error); // elenkse to connection
+  };
+
 ?>
 
 <html>
