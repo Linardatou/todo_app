@@ -1,12 +1,9 @@
 <?php 
-echo "aaaaaaa"
-
 
 //echo "This is a php message";
 //print_r($_POST);
-$no = $_POST['metra'];
-$task = $_POST['task'];
-$status = $_POST[''];
+//$id = $_POST['metra'];
+//f
 
 //var_dump($task);
 
@@ -16,21 +13,23 @@ $username = "root";
 $password = ""; 
 $dbname = "todoapp";
 
-//ftiakse connection
-$conn = new mysqli($hostname, $username, $password, $dbname);
-if($conn->connect_error){
-  die('Something went wrong: '.$conn->connect_error); // elenkse to connection
-  };
+$mysqli = new mysqli($hostname, $username, $password, $dbname);
+
+// Check connection
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+  exit();
+}
 
 ?>
 
 <html>
 <head>
 
-  <style> 
-    body{
+  <style>
+    body{ 
       background-color: rgb(209, 209, 209);
-      font-style: inherit;
+      font-style: inherit; 
     }
     .hide {
       display: none;
@@ -100,20 +99,22 @@ if($conn->connect_error){
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample">
+<form method="POST" name="sample"  action="./jereis.php">
 
     <input type="text" name="task" id="textarea">
-    <input type="button" name="add" value="Save" class="btn" id="save">
+    <input type="submit" name="add" value="Save" class="btn" id="save">
   </div>
 <br><br>
-        <table id="tbl" class="table hide">
+        <table id="tbl" class="table">
             <thead>
               <th>No.</th> 
               <th>Task</th>
               <th>Status</th>
               <th>Button</th>             
             </thead>
-            <tbody></tbody>
+            <tbody>
+          
+            </tbody>
         </table>
 </form>    
 
@@ -124,71 +125,8 @@ if($conn->connect_error){
 <p id="duck">AE</p>
 <button id="kubi" type="color: red;" onclick="red()">Quack</button> -->
 
-<script>
 
-const bob = document.querySelector(".table")
-let metra = 1;
-
-const save = document.getElementById("save");
-save.addEventListener("click", addResponse);
-
-function addResponse()
-    {  
-        var no  = 1; 
-        var task=document.sample.task.value; 
-
-        let listask = {task:task, status: status="In Progress"}
-        
-        var tr = document.createElement('tr');
-
-        let arr = [];
-        arr.push(listask);
-        console.log(arr);
-
-        
-      if(task.length == 0 || task == " "){
-        alert("Give a task please")
-        }else{
-
-        for(let i = 0; i < arr.length; i++){
-        bob.classList.remove("hide") 
-        
-        var td1 = tr.appendChild(document.createElement('td'));
-        td1.innerHTML= metra;
-
-        var td2 = tr.appendChild(document.createElement('td'));
-        td2.innerHTML= task;
-
-        var td3 = tr.appendChild(document.createElement('td'));
-        td3.appendChild(document.createTextNode(arr[i].status));
-
-        var td4 = tr.appendChild(document.createElement('td'));
-        td4.innerHTML='<input type="button" name="up" value="Update" onclick="updt(this);" class="btn btn-primary"> <input type="button" name="del" value="Delete" onclick="dlt(this);" class="btn">'
-
-        document.getElementById("tbl").appendChild(tr);
-        metra++;
-        }
-      }
-    }
-
-    if(task.length == ""){
-        bob.classList.add("hide")
-      }
-
-
-    function dlt(stud){
-        var s=stud.parentNode.parentNode;
-        s.parentNode.removeChild(s);
-    }
-
-    function updt(stud){
-      var je = stud.parentNode;
-      console.log(je)
-      je.previousSibling.innerText = "Complete";
-    }
-  
-
-</script>
 
     </body>
 </html>
+<?php $mysqli -> close(); ?>
