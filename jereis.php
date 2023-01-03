@@ -1,96 +1,54 @@
 <?php 
-
-//echo "This is a php message";
-//print_r($_POST);
-//$id = $_POST['metra'];
-//f
-
-//var_dump($task);
-
-//datebase connection
-$hostname = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "todoapp";
-
-$mysqli = new mysqli($hostname, $username, $password, $dbname);
-
+  //
+  $hostname = "localhost";
+  $username = "root";
+  $password = ""; 
+  $dbname = "todoapp";
+  
+//create connection
+$mysqli = new mysqli($hostname, $username,  $password, $dbname);
+  
 // Check connection
-if ($mysqli -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-  exit();
+if ($mysqli->connect_error){
+  die("Connection failed: " . $conn->connect_error);
 }
 
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+  //$id = ;
+  $title = $_POST['task'];
+  //$button1 = "UPDATE tasks SET status='Complete' WHERE id= " ;
+ // $button2 = "DELETE FROM tasks WHERE $row = ";
+  
+
+  
+  //if(!empty($_POST['task'])){
+  $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
+  $cl = $mysqli->query($sql);
+
+}
+
+$results = $mysqli->query("SELECT * FROM tasks");
+
+
+if(array_key_exists('del', $_POST)){
+  diagrafei();
+}
+function diagrafei(){
+  $del = "DELETE FROM tasks WHERE id";
+  //$dl = mysqli_query($mysqli, $del);
+}
+
+if(array_key_exists('up', $_POST)){
+  update();
+}
+function update(){
+  $up = "UPDATE tasks SET status='Complete!' WHERE id";
+}
 ?>
 
 <html>
 <head>
-
-  <style>
-    body{ 
-      background-color: rgb(209, 209, 209);
-      font-style: inherit; 
-    }
-    .hide {
-      display: none;
-    }
-
-    .container{ 
-      border-style: none;
-      border-radius: 15px;
-      background-color: rgb(247, 246, 246);
-      padding-top: 12.5px;
-      padding-bottom: 10px;
-      width: 400px;
-      text-align: center;
-      margin: auto;
-      margin-top: 200px;
-      font-style: courier;
-    }
-    input[type=text]{
-      width: 60%;
-    }
-    input[name=add]{
-      background-color: rgb(0, 162, 255);
-      color:aliceblue;
-      border-radius: 4px;
-      border: none;
-      padding: 3px 6px;
-      font-size: 14px;
-    }
-    input[name=up]{
-      background-color: rgba(98, 184, 58, 0.966);
-      color:aliceblue;
-      border-radius: 4px;
-      border: none;
-      padding: 3px 6px;
-      font-size: 14px;
-    }
-    input[name=del]{
-      background-color: rgb(226, 62, 62);
-      color:aliceblue;
-      border-radius: 4px;
-      border: none;
-      padding: 3px 6px;
-      font-size: 14px;
-    }
-    table{
-      border-style: none;
-      margin:auto;
-      width: 450px;
-      text-align: center;
-      border-radius: 15px;
-      background-color: rgb(241, 241, 241);
-      padding: 20px 30px 20px 30px;
-    }
-    th,td {
-    padding: 8px;
-    text-align: center;
-    border-bottom: 0.3px solid #DDD;
-    }
-
-
-  </style>
+<link rel="stylesheet" href="style.css">
     <title>jereis</title>
     
 </head>
@@ -102,7 +60,9 @@ if ($mysqli -> connect_errno) {
 <form method="POST" name="sample"  action="./jereis.php">
 
     <input type="text" name="task" id="textarea">
-    <input type="submit" name="add" value="Save" class="btn" id="save">
+    <input type="submit" name="add" value="Save" class="btn" id="save" >
+</form>
+
   </div>
 <br><br>
         <table id="tbl" class="table">
@@ -113,19 +73,27 @@ if ($mysqli -> connect_errno) {
               <th>Button</th>             
             </thead>
             <tbody>
-          
+              <?php 
+                if ($results->num_rows > 0) {
+                  // output data of each row
+                  while($row = $results->fetch_assoc()) {
+                    echo '<tr>';
+                echo '<td>'. $row["id"].'</td>';
+                echo '<td>'. $row["title"] .'</td>';
+                echo '<td>'. ($row["status"] == 0?"In Progress":"Complete") .'</td>';
+                echo '<td><button name="up">Update</button> <button name="del">Delete</button></td>';
+                echo '<tr>';  
+                  }
+                }
+
+              //for($i = 0; $i < count($title); $i++)
+                
+              ?>
             </tbody>
         </table>
-</form>    
+   
 
 <br>
-
-
-<!--peirama gia auto 
-<p id="duck">AE</p>
-<button id="kubi" type="color: red;" onclick="red()">Quack</button> -->
-
-
 
     </body>
 </html>
