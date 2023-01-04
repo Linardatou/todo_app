@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   
   //if(!empty($_POST['task'])){
-  $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
+  $sql = "INSERT INTO pinaka (`title`,`status`) VALUES ('$title', 0)";
   $cl = $mysqli->query($sql);
 
 }
