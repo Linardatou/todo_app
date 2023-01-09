@@ -66,7 +66,9 @@ $results = $mysqli->query("SELECT * FROM tasks");
                 echo '<td>'. $row["id"].'</td>';
                 echo '<td>'. $row["title"] .'</td>';
                 echo '<td>'. ($row["status"] == 0?"In Progress":"Complete") .'</td>';
-                echo '<td><button name="up">Update</button> <button name="del">Delete</button></td>';
+                //returns the value of status the value of status is "In Progress" if 0 is TRUE 
+                //else if the value of status is FALSE then status is "Complete!"
+                echo '<td> <a href="update.php"> <button name="up">Update</button></a> <a href="delete.php"><button name="del" action="delete.php">Delete</button></a> </td>';
                 echo '<tr>';  
                   }
                 }
