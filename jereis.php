@@ -62,7 +62,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
                 if ($results->num_rows > 0) {
                   // output data of each row
                   while($row = $results->fetch_assoc()) {
-                    echo '<tr>';
+                echo '<tr>';
                 echo '<td>'. $row["id"].'</td>';
                 echo '<td>'. $row["title"] .'</td>';
                 echo '<td>'. ($row["status"] == 0?"In Progress":"Complete") .'</td>';
