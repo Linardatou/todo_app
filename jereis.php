@@ -45,7 +45,12 @@ $results = $mysqli->query("SELECT * FROM tasks");
 <form method="POST" name="sample"  action="./jereis.php">
 
     <input type="text" name="task" id="textarea">
-    <input type="submit" name="add" value="Save" class="btn" id="save" >
+    <input type="submit" name="add" value="Save" class="btn hide" id="save" onclick="hide()">
+    <?php
+     function hide(){
+      $var = 'element.classList.remove("hide");';
+     }
+    ?>
 </form>
 
   </div>
@@ -67,7 +72,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
                 echo '<td>'. $row["title"] .'</td>';
                 echo '<td>'. ($row["status"] == 0?"In Progress":"Complete") .'</td>';
                 //returns the value of status the value of status is "In Progress" if 0 is TRUE 
-                //else if the value of status is FALSE then status is "Complete!"
+                // else if the value of status is FALSE then status is "Complete!"
                 echo '<td> <a href="update.php"> <button name="up">Update</button></a> <a href="delete.php"><button name="del" action="delete.php">Delete</button></a> </td>';
                 echo '<tr>';  
                   }
