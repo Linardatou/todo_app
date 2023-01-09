@@ -29,21 +29,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $results = $mysqli->query("SELECT * FROM tasks");
 
-
-if(array_key_exists('del', $_POST)){
-  diagrafei();
-}
-function diagrafei(){
-  $del = "DELETE FROM tasks WHERE id";
-  //$dl = mysqli_query($mysqli, $del);
-}
-
-if(array_key_exists('up', $_POST)){
-  update();
-}
-function update(){
-  $up = "UPDATE tasks SET status='Complete!' WHERE id";
-}
 ?>
 
 <html>
