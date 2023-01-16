@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   
   //if(!empty($_POST['task'])){
-  $sql = "INSERT INTO pinaka (`title`,`status`) VALUES ('$title', 0)";
+  $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
   $cl = $mysqli->query($sql);
 
 }
@@ -44,7 +44,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
 
 <form method="POST" name="sample" action="./jereis.php">
 
-    <input type="text" name="task" id="textarea" required>
+    <input type="text" name="task" id="textarea">
     <input type="submit" name="add" value="Save" class="btn" id="save">
 
 </form> 
