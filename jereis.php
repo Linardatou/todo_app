@@ -1,5 +1,4 @@
 <?php 
-  //
   $hostname = "localhost";
   $username = "root";
   $password = ""; 
@@ -28,12 +27,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $results = $mysqli->query("SELECT * FROM tasks");
-
 ?>
+
 
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
+<script type="text/javascript" href="script.js"></script>
     <title>jereis</title>
     
 </head>
@@ -42,51 +42,52 @@ $results = $mysqli->query("SELECT * FROM tasks");
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample"  action="./jereis.php">
+<form method="POST" name="sample" action="./jereis.php">
 
-    <input type="text" name="task" id="textarea">
-    <input type="submit" name="add" value="Save" class="btn hide" id="save" onclick="hide()">
-    <?php
-     function hide(){
-      $var = 'element.classList.remove("hide");';
-     }
-    ?>
-</form>
+    <input type="text" name="task" id="textarea" required>
+    <input type="submit" name="add" value="Save" class="btn" id="save">
+
+</form> 
 
   </div>
 <br><br>
+<?php
+if($results->num_rows > 0) { ?>
         <table id="tbl" class="table">
             <thead>
-              <th>No.</th> 
+              <th>No.</th>   
               <th>Task</th>
               <th>Status</th>
               <th>Button</th>             
             </thead>
             <tbody>
-              <?php 
-                if ($results->num_rows > 0) {
-                  // output data of each row
-                  while($row = $results->fetch_assoc()) {
-                echo '<tr>';
-                echo '<td>'. $row["id"].'</td>';
-                echo '<td>'. $row["title"] .'</td>';
-                echo '<td>'. ($row["status"] == 0?"In Progress":"Complete") .'</td>';
-                //returns the value of status the value of status is "In Progress" if 0 is TRUE 
-                // else if the value of status is FALSE then status is "Complete!"
-                echo '<td> <a href="update.php"> <button name="up">Update</button></a> <a href="delete.php"><button name="del" action="delete.php">Delete</button></a> </td>';
-                echo '<tr>';  
-                  }
-                }
-
-              //for($i = 0; $i < count($title); $i++)
-                
-              ?>
+         <?php 
+              $a = 0;
+              $sn = 1;
+              while($row = $results->fetch_assoc()) { ?>
+              <tr>
+                <td><?= $sn ?></td>
+                <td><?= $row["title"] ?></td>
+                <td><?= ($row["status"] == 0?"In Progress":"Complete")?></td>
+                <!--returns the value of status the value of status is "In Progress" if 0 is TRUE 
+                 else if the value of status is FALSE then status is "Complete!" -->
+                <td> <a href="update.php?id=<?= $row["id"] ?>"> <button name="up">Update</button></a>
+                     <a href="delete.php?id=<?= $row["id"] ?>"><button name="del">Delete</button></a> 
+                </td>
+              <tr>  
+           <?php 
+                $sn++; 
+              }               
+            ?>
             </tbody>
         </table>
-   
+        <?php } ?>
 
 <br>
 
     </body>
 </html>
-<?php $mysqli -> close(); ?>
+<?php $mysqli -> close(); ?> 
+
+<!--Make it so it doesn't accept blank space as input-->
+<!--ekanes to updating monh sou!-->
