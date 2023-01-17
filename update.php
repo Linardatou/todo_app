@@ -23,7 +23,6 @@ if(isset($_GET["id"])){
   }
     $up = "UPDATE tasks SET status='1' WHERE id=".$_GET["id"]; 
     $mysqli->query($up);
-
   }
 
 ?>
