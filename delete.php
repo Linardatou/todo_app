@@ -23,5 +23,4 @@ if(isset($_GET["id"])){
     $mysqli->query($del);
 
   }
-
 ?>

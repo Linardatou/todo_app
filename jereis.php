@@ -38,20 +38,31 @@ $results = $mysqli->query("SELECT * FROM tasks");
 <form method="POST" name="sample" action="./jereis.php">
 
     <input type="text" name="task" id="textarea">
-    <input type="submit" name="add" value="save" class="btn" id="save">
+    <input type="button" name="add" value="save" class="btn" id="save disable" onkeyup="theFunc()">
 </form> 
 <script>
-let tsk = document.getElementById("textarea").value;
-for(tsk){
 document.getElementById("save").disabled = true;
+
+// let tsk = document.getElementById("textarea").value;
+// let sbmt = tsk.trim();
+// if(sbmt != ""){
+// document.getElementById("save").disabled = false;
+// }
+function theFunc(){
+  var a = document.getElementById("textarea").value;
+  if(a!==""){
+    document.getElementById("save").disable = flase;
+  }
 }
+//or diable the button with css and remove the "disable" id with javascript like you did with bob
+
 </script>
 <?php
 //diable the button when textarea is empty 
 //onkeyup calls when user releases a key
+//kantw vste to page na mhn kanei reload kaue fora poy patietai koybi
 //AJAX request &&jQuerry
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-  //$id = ;
   $title = $_POST['task'];
 ?>
   <script>
