@@ -11,26 +11,14 @@ $mysqli = new mysqli($hostname, $username,  $password, $dbname);
 if ($mysqli->connect_error){
   die("Connection failed: " . $conn->connect_error);
 }
-
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
-  //$id = ;
-  $title = $_POST['task'];
-  //$button1 = "UPDATE tasks SET status='Complete' WHERE id= " ;
- // $button2 = "DELETE FROM tasks WHERE $row = ";
-  
-
-  
-  //if(!empty($_POST['task'])){
-  $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
-  $cl = $mysqli->query($sql);
-
-}
+////
 
 $results = $mysqli->query("SELECT * FROM tasks");
 ?>
 
 
 <html>
+  <title>Jereis</title>
 <head>
 <link rel="stylesheet" href="style.css">
 <script type="text/javascript" href="script.js"></script>
@@ -38,6 +26,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
     
 </head>
 <body>
+<script type="text/javascript" href="no-blank-input.js"></script>
   <div class="container">
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
@@ -45,9 +34,38 @@ $results = $mysqli->query("SELECT * FROM tasks");
 <form method="POST" name="sample" action="./jereis.php">
 
     <input type="text" name="task" id="textarea">
-    <input type="submit" name="add" value="Save" class="btn" id="save">
+    <input type="submit" name="add" value="save" class="btn" id="save">
+
 
 </form> 
+
+<?php
+//diable the button when textarea is empty 
+//onkeyup calls when user releases a key
+//
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+  //$id = ;
+  $title = $_POST['task'];
+?>
+  <script>
+  document.getElementById("textarea").onkeyup = function(){myFunction()};
+
+   function myFunction() {
+   let x = document.getElementById("textarea");
+   x.value = x.value.trim();
+ }
+ </script>
+
+<?php
+  if(empty($_POST['task'])){
+    echo '<script>alert("put a task in textarea!")</script>';
+  }else if(isset($title)){
+  $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
+  $cl = $mysqli->query($sql);
+  }
+}
+
+?>
 
   </div>
 <br><br>
