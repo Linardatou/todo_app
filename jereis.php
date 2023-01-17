@@ -20,13 +20,17 @@ $results = $mysqli->query("SELECT * FROM tasks");
 <html>
   <title>Jereis</title>
 <head>
+<!--this will make the jquery work-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="style.css">
-<script type="text/javascript" href="script.js"></script>
+
+<script type="text/javascript" href="trim.js"></script>
     <title>jereis</title>
     
 </head>
 <body>
-<script type="text/javascript" href="no-blank-input.js"></script>
+
   <div class="container">
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
@@ -35,14 +39,17 @@ $results = $mysqli->query("SELECT * FROM tasks");
 
     <input type="text" name="task" id="textarea">
     <input type="submit" name="add" value="save" class="btn" id="save">
-
-
 </form> 
-
+<script>
+let tsk = document.getElementById("textarea").value;
+for(tsk){
+document.getElementById("save").disabled = true;
+}
+</script>
 <?php
 //diable the button when textarea is empty 
 //onkeyup calls when user releases a key
-//
+//AJAX request &&jQuerry
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   //$id = ;
   $title = $_POST['task'];
