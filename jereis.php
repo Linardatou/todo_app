@@ -42,7 +42,6 @@ $results = $mysqli->query("SELECT * FROM tasks");
 <?php
 //diable the button when textarea is empty 
 //onkeyup calls when user releases a key
-//trim() trims empty space in text while user is writing it
 //
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   //$id = ;
@@ -57,16 +56,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
  }
  </script>
 
-<?php } ?> 
+<?php
+  $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
+  $cl = $mysqli->query($sql);
+  }
+?>
 
-<!-- anamesa sto parapanv php kai to  } eixes balei to alert gia textarea 
-epeidh gias kapoio logo den ginotan comment -->
-</div>
-
+  </div>
 <br><br>
 <?php
-if($results->num_rows > 0) { 
-?>
+if($results->num_rows > 0) { ?>
         <table id="tbl" class="table">
             <thead>
               <th>No.</th>   
@@ -78,8 +77,7 @@ if($results->num_rows > 0) {
          <?php 
               $a = 0;
               $sn = 1;
-              while($row = $results->fetch_assoc()) { 
-         ?>
+              while($row = $results->fetch_assoc()) { ?>
               <tr>
                 <td><?= $sn ?></td>
                 <td><?= $row["title"] ?></td>
@@ -96,8 +94,10 @@ if($results->num_rows > 0) {
             ?>
             </tbody>
         </table>
-<?php } ?>
+        <?php } ?>
+
 <br>
+
     </body>
 </html>
 <?php $mysqli -> close(); ?> 
