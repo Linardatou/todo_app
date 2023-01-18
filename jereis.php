@@ -45,24 +45,24 @@ $results = $mysqli->query("SELECT * FROM tasks");
 </form> 
 
 <script>
+//the problem here task  
+document.getElementById("save").disabled = true;
 //this disables the save button
 function submitForm(){
   event.preventDefault();
 
-  const execute = document.getElementById("task");
+  const execute = document.getElementById("task");//when textarea is used by user, calls triminput function 
   execute.addEventListener('click',triminput)
-
-  document.getElementById("task").disabled = true;
 
   function triminput() {
 
     tsk = document.getElementById("task").value.trimStart().trimEnd();
     while(tsk.lenth != 0){
-      document.getElementById("task").disabled = false;
+      document.getElementById("save").disabled = false;
     }
   }
 }
-//or diabled the button with css and remove the "disable" id with javascript like you did with bob
+//or disabled the button with css and remove the "disable" id with javascript like you did with bob
 
 </script>
 <?php
@@ -72,17 +72,7 @@ function submitForm(){
 //AJAX request &&jQuerry
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $title = $_POST['task'];
-?>
-  <script>
-  document.getElementById("textarea").onkeyup = function(){myFunction()};
 
-   function myFunction() {
-   let x = document.getElementById("textarea");
-   x.value = x.value.trim();
- }
- </script>
-
-<?php
   $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
   $cl = $mysqli->query($sql);
   }
