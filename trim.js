@@ -1,11 +1,11 @@
-//document.getElementById("save").disable = true;
+// //document.getElementById("save").disable = true;
 
-const TaskElement = document.getElementById("save");
-TaskElement.addEventListener('click',myFunction);
+// const TaskElement = document.getElementById("save");
+// TaskElement.addEventListener('click',myFunction);
 
-document.getElementById("textarea").onkeyup = function(){myFunction()};
+// document.getElementById("task").onkeyup = function(){myFunction()};
 
-function myFunction() {
-    let x = document.getElementById("textarea");
-    x.value = x.value.trim();
-}
+// function myFunction() {
+//     let x = document.getElementById("textarea");
+//     x.value = x.value.trim();
+// }

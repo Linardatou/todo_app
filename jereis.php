@@ -14,6 +14,7 @@ if ($mysqli->connect_error){
 ////
 
 $results = $mysqli->query("SELECT * FROM tasks");
+
 ?>
 
 
@@ -35,30 +36,37 @@ $results = $mysqli->query("SELECT * FROM tasks");
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample" action="./jereis.php">
+<form method="POST" name="sample" action="./jereis.php" onsubmit="submitForm()">
 
-    <input type="text" name="task" id="textarea">
-    <input type="button" name="add" value="save" class="btn" id="save disable" onkeyup="theFunc()">
+    <input type="text" name="task" id="task">
+    <input type="submit" name="add" value="save" class="btn" id="save">
+
+    <p id="alert"></p>
 </form> 
-<script>
-document.getElementById("save").disabled = true;
 
-// let tsk = document.getElementById("textarea").value;
-// let sbmt = tsk.trim();
-// if(sbmt != ""){
-// document.getElementById("save").disabled = false;
-// }
-function theFunc(){
-  var a = document.getElementById("textarea").value;
-  if(a!==""){
-    document.getElementById("save").disable = flase;
+<script>
+//this disables the save button
+function submitForm(){
+  event.preventDefault();
+
+  const execute = document.getElementById("task");
+  execute.addEventListener('click',triminput)
+
+  document.getElementById("task").disabled = true;
+
+  function triminput() {
+
+    tsk = document.getElementById("task").value.trimStart().trimEnd();
+    while(tsk.lenth != 0){
+      document.getElementById("task").disabled = false;
+    }
   }
 }
-//or diable the button with css and remove the "disable" id with javascript like you did with bob
+//or diabled the button with css and remove the "disable" id with javascript like you did with bob
 
 </script>
 <?php
-//diable the button when textarea is empty 
+//disable the button when textarea is empty 
 //onkeyup calls when user releases a key
 //kantw vste to page na mhn kanei reload kaue fora poy patietai koybi
 //AJAX request &&jQuerry
