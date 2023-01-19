@@ -36,27 +36,29 @@ $results = $mysqli->query("SELECT * FROM tasks");
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample" action="./jereis.php" onsubmit="submitForm()">
+<form method="POST" name="sample" action="./jereis.php">
 
-    <input type="text" name="task" id="task">
+    <input type="text" name="task" id="task" onkeyup="submitForm()">
     <input type="submit" name="add" value="save" class="btn" id="save">
 
     <p id="alert"></p>
 </form> 
 
 <script>
-//the problem here task  
-document.getElementById("save").disabled = true;
-//this disables the save button
+//document.getElementById("save").disabled = true;
+//this disables the save button by default.
+
+//this is to have the thing above as the default
 function submitForm(){
   event.preventDefault();
 
-  const execute = document.getElementById("task");//when textarea is used by user, calls triminput function 
-  execute.addEventListener('click',triminput)
+  const execute = document.getElementById("task");//when textarea is used by user 
+  execute.addEventListener('click',triminput)//calls triminput function 
+
+  tsk = document.getElementById("task").value.trimStart().trimEnd();
+  document.getElementById("alert").innerHTML = tsk;
 
   function triminput() {
-
-    tsk = document.getElementById("task").value.trimStart().trimEnd();
     while(tsk.lenth != 0){
       document.getElementById("save").disabled = false;
     }
