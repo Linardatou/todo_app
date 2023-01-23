@@ -42,27 +42,26 @@ $results = $mysqli->query("SELECT * FROM tasks");
     <input type="submit" name="add" value="save" class="btn" id="save">
 
     <p id="alert"></p>
+    <span id="demo"></span>
 </form> 
 
 <script>
-//document.getElementById("save").disabled = true;
+document.getElementById("save").disabled = true;
 //this disables the save button by default.
 
-
 function submitForm(){
-  event.preventDefault();
-
   const execute = document.getElementById("task");//when textarea is used by user 
   execute.addEventListener('click',triminput)//calls triminput function 
 
   function triminput() {
+    tsk = document.getElementById("task").value.trimStart().trimEnd();
+    document.getElementById("alert").innerHTML = tsk;
+
+    document.getElementById("demo").innerHTML = tsk.length
     if(tsk.lenth != 0){
       document.getElementById("save").disabled = false;
-
-      tsk = document.getElementById("task").value.trimStart().trimEnd();
-      document.getElementById("alert").innerHTML = tsk;
-
-    }
+    } 
+    event.preventDefault();
   }
 }
 //or disabled the button with css and remove the "disable" id with javascript like you did with bob
