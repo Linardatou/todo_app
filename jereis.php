@@ -59,7 +59,7 @@ function submitForm(){
     if(tsk.lenth != 0){
       document.getElementById("save").disabled = false;
 
-      tsk = document.getElementById("task").value.trim();//trimStart().trimEnd();
+      tsk = document.getElementById("task").value.trimStart().trimEnd();
       document.getElementById("alert").innerHTML = tsk;
 
     }
