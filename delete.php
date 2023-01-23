@@ -5,9 +5,7 @@ if(isset($_GET["id"])){
     delete_task();
     header("Location: ./jereis.php");
   }
-  function delete_task(event){
-    event.preventDefault();
-
+  function delete_task() {
     $hostname = "localhost";
     $username = "root";
     $password = ""; 

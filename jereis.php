@@ -38,24 +38,20 @@ $results = $mysqli->query("SELECT * FROM tasks");
 
 <form method="POST" name="sample" action="./jereis.php">
 
-  <input type="text" name="task" id="task" onkeyup="submitForm()">
+  <input type="text" name="task" id="task" onkeyup="triminput()">
   <input type="submit" name="add" value="save" class="btn" id="save" disabled="true">
 
 </form> 
 
 <script>
-//this disables the save button by default.
-function submitForm(){
-const execute = document.getElementById("task");//when textarea is used by user 
-execute.addEventListener('click',triminput)//calls triminput function 
-}
+
+//const execute = document.getElementById("task");//when textarea is used by user 
+//execute.addEventListener('click',triminput)//calls triminput function 
+
 
 function triminput() {
 document.getElementById("save").disabled = true;
 tsk = document.getElementById("task").value.trimStart().trimEnd();
-
-ocument.getElementById("demo").innerHTML = tsk.length
-
 if(tsk.length != 0){
   document.getElementById("save").disabled = false;
 } 
@@ -64,7 +60,6 @@ if(tsk.length != 0){
 
 </script>
 <?php
-//disable the button when textarea is empty 
 //onkeyup calls when user releases a key
 //kantw vste to page na mhn kanei reload kaue fora poy patietai koybi
 //AJAX request &&jQuerry
@@ -89,7 +84,6 @@ if($results->num_rows > 0) { ?>
             </thead>
             <tbody>
          <?php 
-              $a = 0;
               $sn = 1;
               while($row = $results->fetch_assoc()) { ?>
               <tr>

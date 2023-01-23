@@ -1,6 +1,7 @@
 <?php
 //button to update data from table 
 
+
 if(isset($_GET["id"])){
     update_task();
     header("Location: ./jereis.php");
@@ -21,8 +22,13 @@ if(isset($_GET["id"])){
   if ($mysqli->connect_error){
     die("Connection failed: " . $mysqli->connect_error);
   }
+
+  if($row["status"] == 0){
     $up = "UPDATE tasks SET status='1' WHERE id=".$_GET["id"]; 
     $mysqli->query($up);
-  }
-
+   }else{
+     $up = "UPDATE tasks SET status='0' WHERE id=".$_GET["id"]; 
+     $mysqli->query($up);
+   }
+}
 ?>
