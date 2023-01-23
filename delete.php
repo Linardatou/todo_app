@@ -5,7 +5,8 @@ if(isset($_GET["id"])){
     delete_task();
     header("Location: ./jereis.php");
   }
-  function delete_task(){
+  function delete_task(event){
+    event.preventDefault();
 
     $hostname = "localhost";
     $username = "root";
@@ -21,6 +22,5 @@ if(isset($_GET["id"])){
   }
     $del = "DELETE FROM tasks WHERE id=".$_GET["id"]; //
     $mysqli->query($del);
-
   }
 ?>
