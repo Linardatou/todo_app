@@ -48,19 +48,20 @@ $results = $mysqli->query("SELECT * FROM tasks");
 //document.getElementById("save").disabled = true;
 //this disables the save button by default.
 
-//this is to have the thing above as the default
+
 function submitForm(){
   event.preventDefault();
 
   const execute = document.getElementById("task");//when textarea is used by user 
   execute.addEventListener('click',triminput)//calls triminput function 
 
-  tsk = document.getElementById("task").value.trimStart().trimEnd();
-  document.getElementById("alert").innerHTML = tsk;
-
   function triminput() {
-    while(tsk.lenth != 0){
+    if(tsk.lenth != 0){
       document.getElementById("save").disabled = false;
+
+      tsk = document.getElementById("task").value.trim();//trimStart().trimEnd();
+      document.getElementById("alert").innerHTML = tsk;
+
     }
   }
 }
