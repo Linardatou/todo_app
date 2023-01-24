@@ -1,7 +1,5 @@
 <?php
 //button to update data from table 
-
-
 if(isset($_GET["id"])){
     update_task();
     header("Location: ./jereis.php");
@@ -25,10 +23,10 @@ if(isset($_GET["id"])){
 
   if($row["status"] == 0){
     $up = "UPDATE tasks SET status='1' WHERE id=".$_GET["id"]; 
-    $mysqli->query($up);
-   }else{
+   }else if($row["status"] == 1){
      $up = "UPDATE tasks SET status='0' WHERE id=".$_GET["id"]; 
-     $mysqli->query($up);
    }
+   $mysqli->query($up);
 }
 ?>
+<!--attempt at making status='0' to status='1' and vise versa-->
