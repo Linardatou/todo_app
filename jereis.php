@@ -36,26 +36,22 @@ $results = $mysqli->query("SELECT * FROM tasks");
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample" action="./jereis.php">
+<form method="POST" name="sample" action="./jereis.php" id="formID">
 
   <input type="text" name="task" id="task" onkeyup="triminput()">
   <input type="submit" name="add" value="save" class="btn" id="save" disabled="true">
 
 </form> 
 
-<script>
-//const execute = document.getElementById("task");//when textarea is used by user 
-//execute.addEventListener('click',triminput)//calls triminput function 
+<script type="text/javascript" src="trim-submit.js">
 
-function triminput() {
-document.getElementById("save").disabled = true;
-tsk = document.getElementById("task").value.trimStart().trimEnd();
-if(tsk.length != 0){
-  document.getElementById("save").disabled = false;
- }
+var form = document.getElementById("formID");
+function submitForm(event){
+  event.preventDefault();
 }
 
 </script>
+
 <?php
 //onkeyup calls when user releases a key
 //kantw vste to page na mhn kanei reload kaue fora poy patietai koybi
