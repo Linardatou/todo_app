@@ -3,17 +3,10 @@
 
 if(isset($_GET["id"])){
     delete_task();
-    header("Location: ./jereis.php");
+    header("Location: ./index.php");
   }
   function delete_task() {
-    $hostname = "localhost";
-    $username = "root";
-    $password = ""; 
-    $dbname = "todoapp";
-    
-  //create connection
-  $mysqli = new mysqli($hostname, $username,  $password, $dbname);
-    
+    include "db.php";
   // Check connection
   if ($mysqli->connect_error){
     die("Connection failed: " . $mysqli->connect_error);
