@@ -146,4 +146,3 @@ $(function() {
 <?php $mysqli -> close(); ?> 
 
 <!--Make it so it doesn't accept blank space as input-->
-<!--ekanes to updating monh sou!-->
