@@ -1,9 +1,8 @@
 <?php
 //button to delete data from table 
 
-if(isset($_GET["id"])){
+if(isset($_POST["id"])){
     delete_task();
-    header("Location: ./index.php");
   }
   function delete_task() {
     include "db.php";
@@ -11,7 +10,8 @@ if(isset($_GET["id"])){
   if ($mysqli->connect_error){
     die("Connection failed: " . $mysqli->connect_error);
   }
-    $del = "DELETE FROM tasks WHERE id=".$_GET["id"]; //
+    $del = "DELETE FROM tasks WHERE id=".$_POST["id"]; //
     $mysqli->query($del);
+    exit(json_encode(["success"=> "ok"]));
   }
 ?>
