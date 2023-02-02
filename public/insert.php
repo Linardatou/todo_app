@@ -9,14 +9,14 @@ if(isset($_POST['task'])) {
     $title = filter_var($_POST['task'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     if(filter_var($title, FILTER_VALIDATE_BOOL)){
-        if(empty($title)){
-            echo "Please put a valid task to do";
-            $errorEmpty = true;
-        }else{
+        if(!empty($title)){
         $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
         $cl = $mysqli->query($sql);
+        }else{
+        echo "Please put a valid task to do";
+        $errorEmpty = true;
         }
-            echo "Please put a valid task to do";
+
     }
     
 }

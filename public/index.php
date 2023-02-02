@@ -23,7 +23,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample" action="./insert.php">
+<form method="POST" name="sample" action="./insert.php" id="form">
 
   <input type="text" name="task" id="task" onkeyup="triminput()">
   <input type="submit" name="add" value="save" class="save" id="save" disabled="true">

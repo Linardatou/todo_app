@@ -1,6 +1,5 @@
 //const execute = document.getElementById("task");//when textarea is used by user 
 //execute.addEventListener('click',triminput)//calls triminput function 
-
 function triminput() {
     document.getElementById("save").disabled = true;
     tsk = document.getElementById("task").value.trimStart().trimEnd();
@@ -8,21 +7,20 @@ function triminput() {
       document.getElementById("save").disabled = false;
      }
 
-    $('.save').click(function(e){
-    e.preventDefault();
-    const title = $(this).data("title");
+    $('.save').click(function(ev){
+      ev.preventDefault();
+      const title = $(this).data("title")
 
      $.ajax({
       type: "POST",
       url: "insert.php",
       dataType: "json",
-      data:{title: title},
+      data:{title: title,},
        cache: false,
        success: function(data) {
         // if(data.success == "ok"){
-         },
-        error: function(response){}
-       });
+         }
+       })
       });
     }
     
