@@ -69,7 +69,23 @@ if($results->num_rows > 0) { ?>
 <script type="text/javascript" src="trim-submit.js"></script>
 <!--<script type="text/javascript" src="filter.js"></script>-->
 
-<script>
+<script>/*
+  $(function(){
+    $("form").on('submit', function(e){
+      e.preventDefault();
+      let user_input = $(this).serialize();
+
+      $.ajax({
+        type: 'POST',
+        url: 'insert.php',
+        data: user_input,
+        success: function(data){}
+      })
+    });
+  }
+  )
+*///function attempt sto na ginetai submit to form xvris na to kanei refresh 
+//alla prepei na vrb tropo na kanv validate to form prota
 
   $(function() {
     $(".update").on("click",function(event){
@@ -121,11 +137,6 @@ if($results->num_rows > 0) { ?>
     })
     
 }); 
-if($_POST["id"] == 0) {
-    $(".table").hide();
-  }else{
-    $(".table").show();
-  }
 
 </script>
     </body>

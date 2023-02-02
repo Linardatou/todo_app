@@ -7,17 +7,22 @@ function triminput() {
     if(tsk.length != 0){
       document.getElementById("save").disabled = false;
      }
-    $('.save').click(function(){
+
+    $('.save').click(function(e){
+    e.preventDefault();
+    const title = $(this).data("title");
+
      $.ajax({
       type: "POST",
       url: "insert.php",
       dataType: "json",
-      data:{title: title,},
+      data:{title: title},
        cache: false,
        success: function(data) {
         // if(data.success == "ok"){
-         }
-       })
+         },
+        error: function(response){}
+       });
       });
     }
     
