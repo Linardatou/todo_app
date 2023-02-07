@@ -1,24 +1,13 @@
 
 <?php
 include "db.php";
-
-$errorEmpty = false;
+echo htmlspecialchars($_SERVER["PHP_SELF"]);
 
 if(isset($_POST['task'])) {
-
-    $title = filter_var($_POST['task'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-    if(filter_var($title, FILTER_VALIDATE_BOOL)){
-        if(!empty($title)){
-        $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
-        $cl = $mysqli->query($sql);
-        }else{
-        echo "Please put a valid task to do";
-        $errorEmpty = true;
-        }
-
-    }
-    
+    $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
+    $cl = $mysqli->query($sql);
+    $title = filter_var($unfiltered_title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    echo "Please put a valid task to do";
 }
 
 header("Location: index.php");

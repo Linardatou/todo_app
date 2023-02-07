@@ -33,7 +33,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
   </div>
 <br><br>
 <?php
-if($results->num_rows > 0) { ?>
+if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table gets deleted to not show the table-->
         <table id="tbl" class="table">
             <thead>
               <th>No.</th>   
@@ -61,7 +61,8 @@ if($results->num_rows > 0) { ?>
             ?>
             </tbody>
         </table>
-<?php } ?>
+<?php 
+}else{}?>
 
 <br>
 
@@ -69,23 +70,11 @@ if($results->num_rows > 0) { ?>
 <script type="text/javascript" src="trim-submit.js"></script>
 <!--<script type="text/javascript" src="filter.js"></script>-->
 
-<script>/*
-  $(function(){
-    $("form").on('submit', function(e){
-      e.preventDefault();
-      let user_input = $(this).serialize();
-
-      $.ajax({
-        type: 'POST',
-        url: 'insert.php',
-        data: user_input,
-        success: function(data){}
-      })
-    });
-  }
-  )
+<script>
+/*
 *///function attempt sto na ginetai submit to form xvris na to kanei refresh 
 //alla prepei na vrb tropo na kanv validate to form prota
+
 
   $(function() {
     $(".update").on("click",function(event){
@@ -143,4 +132,6 @@ if($results->num_rows > 0) { ?>
 </html>
 <?php $mysqli -> close(); ?> 
 
-<!--Make it so it doesn't accept blank space as input-->
+<!--Make it so it doesn't accept blank space as input
+it somehow outputs a blank?
+-->
