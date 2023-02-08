@@ -1,10 +1,8 @@
 <?php 
 include "db.php";
 // Check connection
-if ($mysqli->connect_error){
-  die("Connection failed: " . $conn->connect_error);
-}
-$results = $mysqli->query("SELECT * FROM tasks");
+
+$statement = $pdo->query("SELECT * FROM tasks");
 
 //onkeyup calls when user releases a key
 //kantw vste to page na mhn kanei reload kaue fora poy patietai koybi
@@ -23,7 +21,7 @@ $results = $mysqli->query("SELECT * FROM tasks");
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
 
-<form method="POST" name="sample" action="./insert.php" id="form">
+<form method="POST" name="sample" id="form">
 
   <input type="text" name="task" id="task" onkeyup="triminput()">
   <input type="submit" name="add" value="save" class="save" id="save" disabled="true">
@@ -33,7 +31,8 @@ $results = $mysqli->query("SELECT * FROM tasks");
   </div>
 <br><br>
 <?php
-if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table gets deleted to not show the table-->
+$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+if($results && count($results)) { ?> <!--write ajax here for when everything is table gets deleted to not show the table-->
         <table id="tbl" class="table">
             <thead>
               <th>No.</th>   
@@ -44,7 +43,7 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
             <tbody>
          <?php 
               $sn = 1;
-              while($row = $results->fetch_assoc()) { ?>
+              foreach($results as $row) { ?>
               <tr>
                 <td><?= $sn ?></td>
                 <td><?= $row["title"] ?></td>
@@ -72,7 +71,32 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
 <script>
 //function attempt sto na ginetai submit to form xvris na to kanei refresh 
 //alla prepei na vrb tropo na kanv validate to form prota
+
   $(function() {
+    $(".save").on("click",function(event){
+        event.preventDefault();
+        const title = $("#task").val()//
+        const _this = $(this)
+        $.ajax({
+          url: "insert.php",
+          dataType: "json",
+          type: "POST",
+          data : {
+            title: title,
+          },
+          success: function(data, textStatus, jqXHR){
+            if(data.success == "ok")
+            {
+              location.reload()//log in system 
+
+            }else{
+              console.log(data)
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown){}
+        });
+      })
+      
     $(".update").on("click",function(event){
       event.preventDefault();
       const id = $(this).data("id")
@@ -127,7 +151,7 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
 </script>
     </body>
 </html>
-<?php $mysqli -> close(); ?> 
+
 
 <!--Make it so it doesn't accept blank space as input
 it somehow outputs a blank?

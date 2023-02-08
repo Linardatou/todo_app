@@ -2,29 +2,17 @@
 <?php
 include "db.php";
 
-if(isset($_POST['task'])) {
-    $title = filter_var($_POST['task'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $sql = "INSERT INTO tasks (`title`,`status`) VALUES ('$title', 0)";
+if(isset($_POST['title'])) {
+    $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $sql = "INSERT INTO tasks (`title`,`status`) VALUES (?, 0)";
 
     $statement = $pdo->prepare($sql);
-    $statement ->execute([
-        '$title' => $title
+    $statement->execute([
+        $title
     ]);
-    $publisher_title = $pdo->lastInsertId();
-    //$cl = $mysqli->query($sql);
+    $id = $pdo->lastInsertId();
+    exit(json_encode(["success"=> "ok"]));
 }
+exit(json_encode(["success"=> false ]));
 
-header("Location: index.php");
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $filtered_title = filter_input(INPUT_POST,"task",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    //$newtitle = filter_var($_POST['task'], FILTER_SANITIZE_SPECIAL_CHARS);
-    }
-    
-    function test_input($data){
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-    
 ?>

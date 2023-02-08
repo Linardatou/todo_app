@@ -7,11 +7,10 @@ if(isset($_POST["id"])){
   function delete_task() {
     include "db.php";
   // Check connection
-  if ($mysqli->connect_error){
-    die("Connection failed: " . $mysqli->connect_error);
-  }
-    $del = "DELETE FROM tasks WHERE id=".$_POST["id"]; //
-    $mysqli->query($del);
+    $sql = "DELETE FROM tasks WHERE id=?"; //
+    $statement = $pdo->prepare($sql);
+
+    $statement->execute([$_POST["id"]]);
     exit(json_encode(["success"=> "ok"]));
   } 
 ?>

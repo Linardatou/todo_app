@@ -9,11 +9,10 @@ if(isset($_POST["id"])){
   //create connection
   include "db.php";
   // Check connection
-  if ($mysqli->connect_error){
-    die("Connection failed: " . $mysqli->connect_error);
-  }
-    $up = "UPDATE tasks SET status='".$_POST["status"]."' WHERE id=".$_POST["id"]; 
-   $mysqli->query($up);
+   $sql = "UPDATE tasks SET status=? WHERE id=?"; 
+   
+   $statement = $pdo->prepare($sql); 
+   $statement->execute([$_POST['status'], $_POST['id']]);
    exit(json_encode(["success"=> "ok"]));
 }
 ?>
