@@ -13,5 +13,5 @@ if(isset($_POST["id"])){
     $del = "DELETE FROM tasks WHERE id=".$_POST["id"]; //
     $mysqli->query($del);
     exit(json_encode(["success"=> "ok"]));
-  }
+  } 
 ?>

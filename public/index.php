@@ -61,8 +61,7 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
             ?>
             </tbody>
         </table>
-<?php 
-}else{}?>
+<?php } ?>
 
 <br>
 
@@ -74,8 +73,6 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
 /*
 *///function attempt sto na ginetai submit to form xvris na to kanei refresh 
 //alla prepei na vrb tropo na kanv validate to form prota
-
-
   $(function() {
     $(".update").on("click",function(event){
       event.preventDefault();
@@ -97,12 +94,10 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
               _this.data("status", status? 0:1)
             }
         },
-        error: function (jqXHR, textStatus, errorThrown)
-        {
-    
-        }
+        error: function (jqXHR, textStatus, errorThrown){}
       });
     })
+
     $(".delete").on("click",function(event){
       event.preventDefault();
       const id = $(this).data("id")
@@ -119,6 +114,9 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
         {
             if(data.success == "ok"){
               _this.closest('tr').remove();
+            }
+            if(id == 0){
+              $(".table").hide();//attempt at ahiding the table when you delete everything from it
             }
         },
         error: function (response){}
