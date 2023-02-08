@@ -70,8 +70,7 @@ if($results->num_rows > 0) { ?> <!--write ajax here for when everything is table
 <!--<script type="text/javascript" src="filter.js"></script>-->
 
 <script>
-/*
-*///function attempt sto na ginetai submit to form xvris na to kanei refresh 
+//function attempt sto na ginetai submit to form xvris na to kanei refresh 
 //alla prepei na vrb tropo na kanv validate to form prota
   $(function() {
     $(".update").on("click",function(event){
