@@ -3,10 +3,9 @@ body{
     background-color: rgb(209, 209, 209);
     font-style: inherit; 
   }
-  .hide {
+  /* .hide {
     display: none;
-  }
-
+  } */
   .container{ 
     border-style: none;
     border-radius: 15px;
@@ -57,9 +56,47 @@ body{
   text-align: center;
   border-bottom: 0.3px solid #DDD;
   }
-  .error {
-    font-style: courier;
-    font-size: medium;
-    font-weight: 100;
+  #login{
+    background-color: rgb(0, 162, 255);
+    color:  rgb(241, 241, 241);
+    border-radius: 12px;
+    border: none;
+    padding: 15px 28px;
+    font-size: 20px;
+    font-family: Georgia;
   }
 
+  .div{
+    border-style: none;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    font-style: courier;
+  }
+  h2{
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 80px;
+  }
+  input{
+    padding: 8px 10px;
+    border-radius: 4px;
+    border-style: none;
+  }
+  .tapper{
+    border-style: none;
+    border-radius: 15px;
+    background-color: rgb(247, 246, 246);
+    padding-top: 30px;
+    padding-bottom: 10px;
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    font-style: courier;
+  }
+  
