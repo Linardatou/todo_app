@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <head>
     <title>Login Page for do to list</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css" type="text/css"> 
 </head>
 <body>
 
@@ -18,7 +18,7 @@
         <br><br>
         <button id="login" onkeyup="">Submit</button>
     <form>
-        <p>You have no account?<a href="">Login Up</a></p>
+        <p>You have no account?<a href="signup.php">Sign Up</a></p>
 <div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
