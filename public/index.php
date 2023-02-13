@@ -94,7 +94,7 @@ if($results && count($results)) { ?> <!--write ajax here for when everything is 
           error: function(jqXHR, textStatus, errorThrown){}
         });
       })
-      
+    
     $(".update").on("click",function(event){
       event.preventDefault();
       const id = $(this).data("id")

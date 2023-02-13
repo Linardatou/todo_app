@@ -21,32 +21,36 @@
         <p>You have no account?<a href="">Login Up</a></p>
 <div>
 
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+
 $(function() {
-    $(".login").on("click",function(event){
+    $("#login").on("click",function(event){
         event.preventDefault();
-       // const title = $("#task").val()//
-       // const _this = $(this)
+        const user_name = $("#username").val()
+        const password = $("#user_code").val()
+        const _this = $(this)
         $.ajax({
           url: "login_insert.php",
           dataType: "json",
           type: "POST",
           data : {
-            user_name, user_name
+            user_name : user_name,
+            password : userword,
           },
-    //       success: function(data, textStatus, jqXHR){
-    //         if(data.success == "ok")
-    //         {
-    //           location.reload()//log in system 
+          success: function(data, textStatus, jqXHR){
+            if(data.success == "ok")
+            {
+              location.reload()//log in system 
 
-    //         }else{
-    //           console.log(data)
-    //         }
-    //       },
-    //       error: function(jqXHR, textStatus, errorThrown){}
-         });
-       })
+            }else{
+              console.log(data)
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown){}
+        });
+      })
     });
+
 </script>
 
 </body>
