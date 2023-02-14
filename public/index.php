@@ -1,4 +1,8 @@
 <?php 
+session_start();
+if(!isset($_SESSION["userid"])){
+  header("Location: login.php");
+}
 include "db.php";
 // Check connection
 
@@ -69,7 +73,6 @@ if($results && count($results)) { ?> <!--write ajax here for when everything is 
 <script>
 //function attempt sto na ginetai submit to form xvris na to kanei refresh 
 //alla prepei na vrb tropo na kanv validate to form prota
-
   $(function() {
     $(".save").on("click",function(event){
         event.preventDefault();
@@ -136,9 +139,11 @@ if($results && count($results)) { ?> <!--write ajax here for when everything is 
             if(data.success == "ok"){
               _this.closest('tr').remove();
             }
-            if(id == 0){
-              $(".table").hide();//attempt at ahiding the table when you delete everything from it
-            }
+             let result = $("#tbl").find("tbody tr").length;
+             if(result == 0){
+              $("#tbl").hide();
+             }
+             //attempt at ahiding the table when you delete everything from it
         },
         error: function (response){}
       });
