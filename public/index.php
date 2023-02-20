@@ -7,10 +7,6 @@ include "db.php";
 // Check connection
 
 $statement = $pdo->query("SELECT * FROM tasks");
-
-//onkeyup calls when user releases a key
-//kantw vste to page na mhn kanei reload kaue fora poy patietai koybi
-//AJAX request &&jQuerry
 ?>
 
 <html>
@@ -143,19 +139,13 @@ if($results && count($results)) { ?> <!--write ajax here for when everything is 
              if(result == 0){
               $("#tbl").hide();
              }
-             //attempt at ahiding the table when you delete everything from it
         },
         error: function (response){}
       });
-    })
-    
+    })   
 }); 
 
 </script>
     </body>
 </html>
 
-
-<!--Make it so it doesn't accept blank space as input
-it somehow outputs a blank?
--->
