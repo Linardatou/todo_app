@@ -24,7 +24,7 @@ $stmnt->execute([
     $username,
     $password
 ]);
-$result = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+$result = $stmnt->fetchAll(PDO::FETCH_ASSOC);//
 if(count($result)){
     $_SESSION["userid"]=$result[0]["id"];
     exit(json_encode(["success"=> "ok"]));

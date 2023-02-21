@@ -12,7 +12,7 @@ $statement = $pdo->query("SELECT * FROM tasks");
 <html>
 <head>
 <title>jereis</title>
-<!--this will make the jquery work-->
+<!--the above is what will -->
 <link rel="stylesheet" href="style.css">  
 </head>
 <body>
@@ -32,7 +32,7 @@ $statement = $pdo->query("SELECT * FROM tasks");
 <br><br>
 <?php
 $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-if($results && count($results)) { ?> <!--write ajax here for when everything is table gets deleted to not show the table-->
+if($results && count($results)) { ?> 
         <table id="tbl" class="table">
             <thead>
               <th>No.</th>   
