@@ -2,7 +2,7 @@
 <?php
 include "db.php";
 
-if(isset($_POST['title'])) {
+if(isset($_POST['title'])) {//
     $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $sql = "INSERT INTO tasks (`title`,`status`) VALUES (?, 0)";
 
