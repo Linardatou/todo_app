@@ -22,6 +22,9 @@ $stmnt = $pdo->query("SELECT * FROM users")
         <br><br>
         Enter password:
         <input type="text" id="password" placeholder="Enter password">
+        <br><br>
+        <input type=checkbox>Agree with our
+         <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br><br>
         <button id="login">Submit</button>
     <form>

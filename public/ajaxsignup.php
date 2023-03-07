@@ -1,6 +1,10 @@
 <?php
-session_start();
-include "db.php";
+session_start();//start session
+include "db.php";//includes the code that is in db.php so it creates connection to the server
+$username = "";
+$password = "";
+$email = "";
+$fullname = "";
 
 if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['name'])){
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); 

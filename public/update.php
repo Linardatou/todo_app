@@ -1,6 +1,5 @@
 <?php
-//button to update data from table 
-
+//janagrafei me pdo to status ston pinaka tasks 
 if(isset($_POST["id"])){
     update_task();
    

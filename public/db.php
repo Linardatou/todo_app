@@ -10,4 +10,5 @@ try {
 } catch (PDOException $e) {
 	echo $e->getMessage();
 }
+//this code connects to the server
 ?>

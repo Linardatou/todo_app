@@ -11,7 +11,7 @@ include "db.php";
     <title>Login Page for do to list</title>
     <link rel="stylesheet" href="style.css" type="text/css"> 
 </head>
-<body id="signup">
+<body>
 <div class="tapper1"> 
 <h1 id="sign">This is a Sign Up Form</h1>
     <form id="signup-form" method="POST">
@@ -29,8 +29,12 @@ include "db.php";
         <br><br>
         Repeat password:
         <input type="text" id="repassword" placeholder="Renter password">
+        <br><br>
+        <input type=checkbox>Agree with our
+        <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br><br>
         <button id="signup" class="signup">Submit</button>
+        
     <form>
         <p>You have an account?<a href="login.php">Login</a></p>
 <div>
@@ -44,6 +48,9 @@ $(function() {
         const email = $("#email").val()
         const name = $("#name").val()
         const _this = $(this)
+        if(password != repassword){//an to password kai to passwords jana den einai ta idia,
+          return;//kane return tipota.
+        }
         $.ajax({
           url: "ajaxsignup.php",
           dataType: "json",
@@ -66,6 +73,7 @@ $(function() {
         });
       })
     });
+  
 </script>
 
 </body>
