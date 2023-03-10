@@ -30,7 +30,7 @@ include "db.php";
         Repeat password:
         <input type="text" id="repassword" placeholder="Renter password">
         <br><br>
-        <input type=checkbox>Agree with our
+        <input type=checkbox id="check" checked>Agree with our
         <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br><br>
         <button id="signup" class="signup">Submit</button>
@@ -38,16 +38,20 @@ include "db.php";
     <form>
         <p>You have an account?<a href="login.php">Login</a></p>
 <div>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
 $(function() {
     $("#signup").on("click",function(event){
         event.preventDefault();
-        const username = $("#username").val()
-        const password = $("#password").val()
+        const username = ("#username").val();
+        const password = $("#password").val().trimStart().trimEnd();
         const repassword = $("#repassword").val()
         const email = $("#email").val()
         const name = $("#name").val()
         const _this = $(this)
+      /*const checkbox = $("#check");
+        if(checkbox.checked === false){
+          console.log("checkbox isn't checked");
+        }*/
         if(password != repassword){//an to password kai to passwords jana den einai ta idia,
           return;//kane return tipota.
         }
