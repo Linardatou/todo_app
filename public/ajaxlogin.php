@@ -26,8 +26,8 @@ $stmnt->execute([
 ]);
 $result = $stmnt->fetchAll(PDO::FETCH_ASSOC);//returns an array indexed name as returned in your result set, its a PDOStatement::fetch style
 if(count($result)){
-    $_SESSION["userid"]=$result[0]["id"];
-    exit(json_encode(["success"=> "ok"]));//
+    $_SESSION["userid"]=$result[0]["id"];//this sets the session "userid that will allow the app to go the the index"
+    exit(json_encode(["success"=> "ok"]));
 }else{
     exit(json_encode(["success"=> "notok", "msg"=>"username or\and password isn't correct"])); 
 }

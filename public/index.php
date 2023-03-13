@@ -5,7 +5,19 @@ if(!isset($_SESSION["userid"])){//an o server den exei set to session variable u
 }
 include "db.php";//inserts the contents of the file db.php into this one.
 //
-$statement = $pdo->query("SELECT * FROM tasks");//sto statement variable mpainei to $pdo
+$statement = $pdo->prepare("SELECT * FROM tasks WHERE user_id=?");//sto statement variable mpainei to $pdo
+$statement->execute([
+  $_SESSION["userid"]
+]);
+$usrstmnt = $pdo->prepare("SELECT username FROM users WHERE id=?");
+$usrstmnt->execute([
+  $_SESSION["userid"]
+]);
+$result = $usrstmnt->fetch(PDO::FETCH_ASSOC);
+$username = "";
+if(is_array($result) && count($result)){
+  $username=$result["username"];
+}
 ?>
 
 <html>
@@ -15,7 +27,7 @@ $statement = $pdo->query("SELECT * FROM tasks");//sto statement variable mpainei
 <link rel="stylesheet" href="style.css">  
 </head>
 <body>
-
+<div id="userinfo"><?php echo $username; ?></div>
   <div class="container">
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>

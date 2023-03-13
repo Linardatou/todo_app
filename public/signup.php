@@ -14,7 +14,7 @@ include "db.php";
 <body>
 <div class="tapper1"> 
 <h1 id="sign">This is a Sign Up Form</h1>
-    <form id="signup-form" method="POST">
+    <form id="signup-form">
         Enter username:
         <input type="text" id="username" placeholder="Enter username">
         <br><br>
@@ -22,7 +22,7 @@ include "db.php";
         <input type="text" id="email" placeholder="Enter email"> 
         <br><br>
         Enter name:    
-        <input type="text" id="=name" placeholder="Enter a name to adress you by in emails">
+        <input type="text" id="name" placeholder="Enter a name to adress you by in emails">
         <br><br>
         Enter password:
         <input type="text" id="password" placeholder="Enter password">
@@ -33,17 +33,17 @@ include "db.php";
         <input type=checkbox id="check" checked>Agree with our
         <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br><br>
-        <button id="signup" class="signup">Submit</button>
-        
-    <form>
+        <button id="signup" class="signup" type="submit">Submit</button>
+      </form>
         <p>You have an account?<a href="login.php">Login</a></p>
 <div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
 $(function() {
-    $("#signup").on("click",function(event){
+    $("#signup-form").on("submit",function(event){
         event.preventDefault();
-        const username = ("#username").val();
-        const password = $("#password").val().trimStart().trimEnd();
+        const username = $("#username").val();
+        const password = $("#password").val();
         const repassword = $("#repassword").val()
         const email = $("#email").val()
         const name = $("#name").val()

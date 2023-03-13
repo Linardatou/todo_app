@@ -4,7 +4,6 @@ if(isset($_SESSION["userid"])){
     header("Location: index.php");
 }
 include "db.php"; 
-$stmnt = $pdo->query("SELECT * FROM users")
 ?>
 <!DOCTYPE html>
 <head>
