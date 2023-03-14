@@ -6,10 +6,10 @@ if(!isset($_SESSION["userid"])){//an o server den exei set to session variable u
 include "db.php";//inserts the contents of the file db.php into this one.
 //
 $statement = $pdo->prepare("SELECT * FROM tasks WHERE user_id=?");//sto statement variable mpainei to $pdo
-$statement->execute([
-  $_SESSION["userid"]
+$statement->execute([//insert data to table of database with a place holder to user_id 
+  $_SESSION["userid"]//execute user_id session variable of current session
 ]);
-$usrstmnt = $pdo->prepare("SELECT username FROM users WHERE id=?");
+$usrstmnt = $pdo->prepare("SELECT username FROM users WHERE id=?");//pick out username from database in current id
 $usrstmnt->execute([
   $_SESSION["userid"]
 ]);
@@ -19,15 +19,15 @@ if(is_array($result) && count($result)){
   $username=$result["username"];
 }
 ?>
-
 <html>
 <head>
-<title>jereis</title>
+<title>To do app</title>
 <!--the above is what will -->
 <link rel="stylesheet" href="style.css">  
 </head>
 <body>
-<div id="userinfo"><?php echo $username; ?></div>
+<div id="userinfo">Welcome, <?php echo $username; ?>.</div>
+<button id="logout">Logout</button>
   <div class="container">
        <h1>To do app</h1>
        <p>Enter a task to do and press save</p>
@@ -157,6 +157,19 @@ if($results && count($results)) { ?> <!--an to $results den einai FALSE h Null k
     })   
 }); 
 
+$("#logout").on("click",function(event){
+  event.preventDefault();
+  $.ajax({
+    url : "logout.php",
+    dataType: "json",
+    type: "POST",
+  success: function(data){
+    if(data.success == "ok"){
+      location.reload();
+    }
+  }
+  })
+})
 </script>
     </body>
 </html>

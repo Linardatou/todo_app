@@ -20,9 +20,9 @@ include "db.php";
         <input type="text" id="username" placeholder="Enter username">
         <br><br>
         Enter password:
-        <input type="text" id="password" placeholder="Enter password">
+        <input type="password" id="password" placeholder="Enter password">
         <br><br>
-        <input type=checkbox>Agree with our
+        <input type=checkbox checked>Agree with our
          <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br><br>
         <button id="login">Submit</button>
@@ -30,12 +30,13 @@ include "db.php";
         <p>You have no account?<a href="signup.php">Sign Up</a></p>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
 
 $(function() {
     $("#login").on("click",function(event){
         event.preventDefault();
-        const user_name = $("#username").val()
+        const username = $("#username").val()
         const password = $("#password").val()
         const _this = $(this)
         $.ajax({

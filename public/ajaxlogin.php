@@ -1,5 +1,3 @@
-<!--page that handles the  information-->
- 
 <?php 
 session_start();//a function pou apothikeyei info se variablea gia na 
 //xreishmopoihthoun se ;alles selides mexri na kleisei o browser
