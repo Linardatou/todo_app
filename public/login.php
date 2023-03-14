@@ -41,7 +41,7 @@ $(function() {
         const _this = $(this)
         $.ajax({
           url: "ajaxlogin.php",
-          dataType: "json",
+          dataType: "json", //ALWAYS WRITE IT EXACTLY LIKE THAT
           type: "POST",
           data : {
             username : username,
