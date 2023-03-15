@@ -76,8 +76,7 @@ if($results && count($results)) { ?> <!--an to $results den einai FALSE h Null k
 <?php } //kleinei if?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript" src="trim-submit.js"></script>
-<!--<script type="text/javascript" src="filter.js"></script>-->
+<script type="text/javascript" src="trim-submit.js"></script>     
 
 <script>
 //function attempt sto na ginetai submit to form xvris na to kanei refresh 

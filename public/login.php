@@ -22,15 +22,16 @@ include "db.php";
         Enter password:
         <input type="password" id="password" placeholder="Enter password">
         <br><br>
-        <input type=checkbox checked>Agree with our
+        <input type=checkbox id="check" onclick="checks()">Agree with our</input>
          <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
-        <br><br><br>
-        <button id="login">Submit</button>
+        <br><br>
+        <button id="agree" disabled="true">Submit</button>
     <form>
-        <p>You have no account?<a href="signup.php">Sign Up</a></p>
+        <p>You have no account?<a href="signup.php" >Sign Up</a></p>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="checkbox.js"></script>
 <script>
 
 $(function() {

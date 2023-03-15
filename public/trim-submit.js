@@ -1,4 +1,3 @@
-
 function triminput() {
     document.getElementById("save").disabled = true;
     tsk = document.getElementById("task").value.trimStart().trimEnd();
