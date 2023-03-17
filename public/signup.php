@@ -33,8 +33,8 @@ include "db.php";
         <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br>
         <button id="agree" class="signup" type="submit" disabled="true">Submit</button>
-      </form>
-        <p>You have an account?<a href="login.php">Login</a></p>
+    </form>
+  <p>You have an account?<a href="login.php">Login</a></p>
 <div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="checkbox.js"></script>

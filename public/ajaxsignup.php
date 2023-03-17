@@ -20,7 +20,7 @@ if(empty($username)){//check if user_name is empty
     exit(json_encode(["success" => false, "msg" => "name is empty."]));
 }
 //encrypt password here so that its not visible through the database.
-$password=password_hash($password,PASSWORD_BCRYPT);
+$password=password_hash($password,PASSWORD_DEFAULT);
 
 $sql = "INSERT INTO users (`username`,`password`,`email`,`fullname`) VALUES (?,?,?,?)";
 $pdo->prepare($sql)->execute([
