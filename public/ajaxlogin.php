@@ -17,8 +17,7 @@ if(empty($username)){//check is user_name is empty
 }
 
 $hash=password_hash($password,PASSWORD_DEFAULT);
-$verify=password_verify($password, $hash);
-if($verify){
+
     $sql = "SELECT * FROM users WHERE username=? AND password=?";
 
     $stmnt = $pdo->prepare($sql);
@@ -33,6 +32,3 @@ if($verify){
     }else{
         exit(json_encode(["success"=> "notok", "msg"=>"username or\and password isn't correct"])); 
     }
-}else{
-    echo "Password is incorrect";
-}
