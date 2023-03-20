@@ -1,9 +1,9 @@
 var checkBox = document.getElementById("check");
-var text = document.getElementById("agree");
+var submitBtn = document.querySelector(".submitBtn");
 function checks() {
     if (checkBox.checked == true){
-      text.disabled = false;
+      submitBtn.disabled = false;
     }else {
-       text.disabled =  true;
+      submitBtn.disabled =  true;
     }
   }

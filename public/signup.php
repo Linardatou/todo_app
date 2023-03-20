@@ -7,7 +7,7 @@ include "db.php";
 ?>
 <html>
 <head>
-    <title>Login Page for do to list</title>
+    <title>Sign Up Page for do to list</title>
     <link rel="stylesheet" href="style.css" type="text/css"> 
 </head>
 <body>
@@ -32,7 +32,7 @@ include "db.php";
         <input type=checkbox id="check" onclick="checks()">Agree with our</input>
         <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br>
-        <button id="agree" class="signup" type="submit" disabled="true">Submit</button>
+        <button id="login" class="signup submitBtn" type="submit" disabled="true">Submit</button>
     </form>
   <p>You have an account?<a href="login.php">Login</a></p>
 <div>
@@ -48,10 +48,6 @@ $(function() {
         const email = $("#email").val()
         const name = $("#name").val()
         const _this = $(this)
-      /*const checkbox = $("#check");
-        if(checkbox.checked === false){
-          console.log("checkbox isn't checked");
-        }*/
         if(password != repassword){//an to password kai to passwords jana den einai ta idia,
           return;//kane return tipota.
         }

@@ -16,19 +16,16 @@ if(empty($username)){//check is user_name is empty
     exit(json_encode(["success" => false, "msg" => "user password is empty."]));
 }
 
-$hash=password_hash($password,PASSWORD_DEFAULT);
+$sql = "SELECT * FROM users WHERE username=? LIMIT 1 ";
 
-    $sql = "SELECT * FROM users WHERE username=? AND password=?";
-
-    $stmnt = $pdo->prepare($sql);
-    $stmnt->execute([
-        $username,
-        $password
-    ]);
-    $result = $stmnt->fetchAll(PDO::FETCH_ASSOC);//returns an array indexed name as returned in your result set, its a PDOStatement::fetch style
-    if(count($result)){
-        $_SESSION["userid"]=$result[0]["id"];//this sets the session "userid that will allow the app to go the the index"
-        exit(json_encode(["success"=> "ok"]));
-    }else{
-        exit(json_encode(["success"=> "notok", "msg"=>"username or\and password isn't correct"])); 
-    }
+$stmnt = $pdo->prepare($sql);
+$stmnt->execute([
+    $username
+]);
+$result = $stmnt->fetchAll(PDO::FETCH_ASSOC);//returns an array indexed name as returned in your result set, its a PDOStatement::fetch style
+if(count($result)&& password_verify($password, $result[0]["password"])){
+    $_SESSION["userid"]=$result[0]["id"];//this sets the session "userid that will allow the app to go the the index"
+    exit(json_encode(["success"=> "ok"]));
+}else{
+    exit(json_encode(["success"=> "notok", "msg"=>"username or\and password isn't correct"]));  
+}

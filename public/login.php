@@ -13,7 +13,7 @@ include "db.php";
 <body>
 
 <div class="tapper"> 
-<h1 style="color: rgb(0, 162, 255); text-align: center;">Login to use this app</h1>
+<h1 style="text-align: center;">Login to use this app</h1>
 <br>
     <form id="login-form">
         Enter username:
@@ -25,7 +25,7 @@ include "db.php";
         <input type=checkbox id="check" onclick="checks()">Agree with our</input>
          <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br>
-        <button id="agree" disabled="true">Submit</button>
+        <button id="login" class="submitBtn" disabled="true">Submit</button>
     <form>
         <p>You have no account?<a href="signup.php" >Sign Up</a></p>
 </div>
