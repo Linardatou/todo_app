@@ -1,5 +1,5 @@
-var checkBox = document.getElementById("check");
-var submitBtn = document.querySelector(".submitBtn");
+let checkBox = document.getElementById("check");
+let submitBtn = document.querySelector(".submitBtn");
 function checks() {
     if (checkBox.checked == true){
       submitBtn.disabled = false;
@@ -7,3 +7,4 @@ function checks() {
       submitBtn.disabled =  true;
     }
   }
+

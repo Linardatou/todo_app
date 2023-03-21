@@ -34,7 +34,7 @@ include "db.php";
         <br><br>
         <button id="login" class="signup submitBtn" type="submit" disabled="true">Submit</button>
     </form>
-  <p>You have an account?<a href="login.php">Login</a></p>
+    <p>You have an account?<a href="login.php">Login</a></p>
 <div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="checkbox.js"></script>
@@ -48,9 +48,10 @@ $(function() {
         const email = $("#email").val()
         const name = $("#name").val()
         const _this = $(this)
-        if(password != repassword){//an to password kai to passwords jana den einai ta idia,
-          return;//kane return tipota.
-        }
+      if(password.length >= 8){
+          if(password != repassword){//an to password kai to passwords jana den einai ta idia,
+            return;//kane return tipota.
+          }
         $.ajax({
           url: "ajaxsignup.php",
           dataType: "json",
@@ -71,8 +72,13 @@ $(function() {
           },
           error: function(jqXHR, textStatus, errorThrown){}
         });
-      })
-    });
+    }else{
+      $("h1").html("Password needs atleast 8 characters");
+        console.log("password needs atleast 8 characters");
+        return;
+    };
+   })
+});
   
 </script>
 

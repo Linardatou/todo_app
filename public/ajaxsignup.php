@@ -7,20 +7,27 @@ if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email
     $username = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
     $email = filter_var($_POST['email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $fullname = filter_var($_POST['name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    }//FILTER_SANITIZE_FULL_SPECIAL_CHARS already filters out blanks
-    
-$password = $_POST['password'];
+    $password = $_POST['password'];
+    //expression matches to establish requirements for password
+    $number = preg_match('@[0-9]@', $password);
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+    }
 
-
-if(empty($username)){//check if user_name is empty
+if(empty($username)){
     exit(json_encode(["success" => false, "msg" => "user name is empty."]));//sends user from current page to login_index with an error message
-}else if(empty($password)){//is password is empty
-    exit(json_encode(["success" => false, "msg" => "user password is empty."]));
-}else if(empty($email)){//is password is empty
+}else if(empty($email)){
     exit(json_encode(["success" => false, "msg" => "user email is empty."]));
-}else if(empty($fullname)){//is password is empty
-    exit(json_encode(["success" => false, "msg" => "name is empty."]));
+}else if(empty($fullname)){
+    exit(json_encode(["success" => false, "msg" => "name is empty."]));    
+}else if(empty($password)){
+    exit(json_encode(["success" => false, "msg" => "user password is empty."]));
 }
+if(strlen($password) < 8 ){
+    exit(json_encode(["success" => false, "msg" => "user password is not strong enough."]));
+}
+
 //encrypt password here so that its not visible through the database.
 $password_hash=password_hash($password,PASSWORD_DEFAULT);
 
