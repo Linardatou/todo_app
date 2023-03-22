@@ -14,27 +14,30 @@ include "db.php";
 <div class="tapper1"> 
 <h1 id="sign">This is a Sign Up Form</h1>
     <form id="signup-form">
-        Enter username:
+        <label>Enter username:</label>
         <input type="text" id="username" placeholder="Enter username">
         <br><br>
-        Enter email:    
+        <label>Enter Email:</label>    
         <input type="text" id="email" placeholder="Enter email"> 
         <br><br>
-        Enter name:    
+        <label>Enter name:</label>    
         <input type="text" id="name" placeholder="Enter a name to adress you by in emails">
         <br><br>
-        Enter password:
+        <label>Enter password:</label>
         <input type="password" id="password" placeholder="Enter password">
         <br><br>
-        Repeat password:
+        <label> password:</label>
         <input type="password" id="repassword" placeholder="Renter password">
         <br><br>
+  <div id="check-submit">
         <input type=checkbox id="check" onclick="checks()">Agree with our</input>
         <a href="https://en.wikipedia.org/wiki/Terms_of_service">Terms and Conditions</a>
         <br><br>
         <button id="login" class="signup submitBtn" type="submit" disabled="true">Submit</button>
     </form>
     <p>You have an account?<a href="login.php">Login</a></p>
+  </div>
+  
 <div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript" src="checkbox.js"></script>
@@ -48,7 +51,7 @@ $(function() {
         const email = $("#email").val()
         const name = $("#name").val()
         const _this = $(this)
-      if(password.length >= 8){
+    if(password.length >= 8){
           if(password != repassword){//an to password kai to passwords jana den einai ta idia,
             return;//kane return tipota.
           }
@@ -74,8 +77,8 @@ $(function() {
         });
     }else{
       $("h1").html("Password needs atleast 8 characters");
-        console.log("password needs atleast 8 characters");
-        return;
+        console.log("password < 8");
+        return;//so that the browser doesnt ask to save login, even tho it never goes through
     };
    })
 });

@@ -89,9 +89,9 @@ body{
     border-radius: 15px;
     background-color: rgb(247, 246, 246);
     padding-top: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     width: 550px;
-    height: 350px;
+    height: 310px;
     text-align: center;
     margin: auto;
     margin-top: 100px;
@@ -106,7 +106,7 @@ body{
     padding-bottom: 20px;
     width: 550px;
     height: 450px;
-    text-align: center;
+    
     margin: auto;
     margin-top: 100px;
     font-style: courier;
@@ -131,4 +131,21 @@ body{
   }
   #custom{
     text-align: center;
+  }
+  label {
+    display: inline-block;
+    text-align: right;
+    clear: left;
+    width: 150px;
+  }
+  h1{
+    text-align: center;
+  }
+  #check-submit{
+    text-align: center;
+  }
+  .submitBtn{
+    border-radius: 3px;
+    padding: 8px 15px;
+    font-size: 12px;
   }

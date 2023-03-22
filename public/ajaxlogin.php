@@ -22,7 +22,7 @@ $stmnt = $pdo->prepare($sql);
 $stmnt->execute([
     $username
 ]);
-$result = $stmnt->fetchAll(PDO::FETCH_ASSOC);//returns an array indexed name as returned in your result set, its a PDOStatement::fetch style
+$result = $stmnt->fetchAll(PDO::FETCH_ASSOC);
 if(count($result)&& password_verify($password, $result[0]["password"])){
     $_SESSION["userid"]=$result[0]["id"];//this sets the session "userid that will allow the app to go the the index"
     exit(json_encode(["success"=> "ok"]));
