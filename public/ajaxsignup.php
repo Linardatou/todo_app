@@ -29,7 +29,7 @@ $sc = preg_match('@[^\w\?;]@', $password);//must have one special character
  }else{ 
     $password_hash=password_hash($password,PASSWORD_BCRYPT);
 
-    try{
+
         $sql = "INSERT INTO users (`username`,`password`,`email`,`fullname`) VALUES (?,?,?,?)";
         $result=$pdo->prepare($sql)->execute([
         $username,
@@ -43,8 +43,5 @@ $sc = preg_match('@[^\w\?;]@', $password);//must have one special character
         exit(json_encode(["success"=> "ok"]));
     }else{
         exit(json_encode(["success"=> "notok", "msg"=>print_r($result, true)])); 
-    }
-    } catch(PDOException $e){
-        exit(json_encode(["success"=> "notok", "msg"=>$e->getMessage()])); 
-    }
+ } 
 }
