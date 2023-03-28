@@ -70,7 +70,7 @@ $(function() {
             {
               window.location.href = "index.php"; 
             }else{
-              console.log(data)
+              console.log(data.msg);
             }
           },
           error: function(jqXHR, textStatus, errorThrown){}

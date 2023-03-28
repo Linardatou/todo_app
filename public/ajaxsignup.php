@@ -24,24 +24,33 @@ $uppercase = preg_match('@[A-Z]@', $password);//must contain a capital letter
 $lowercase = preg_match('@[a-z]@', $password);//must contain a lowercase letter
 $sc = preg_match('@[^\w\?;]@', $password);//must have one special character
 
- if(strlen($password) < 8 || !$number || !$uppercase || !$lowercase || !$sc){
+if(strlen($password) < 8 || !$number || !$uppercase || !$lowercase || !$sc){
      exit(json_encode(["success"=> false, "msg"=>"password needs at least a number, a lowercase and upercase letter and a special character"])); 
  }else{ 
     $password_hash=password_hash($password,PASSWORD_BCRYPT);
 
-
+    $stmnt=$pdo->prepare("SELECT email FROM users WHERE email=?");
+    $stmnt->execute([
+        $email,
+    ]);
+    $found = $stmnt->fetch();
+    if($found){
+        exit(json_encode(["success" => false, "msg" => "user email is already in use"]));
+    }else{
         $sql = "INSERT INTO users (`username`,`password`,`email`,`fullname`) VALUES (?,?,?,?)";
         $result=$pdo->prepare($sql)->execute([
-        $username,
-        $password_hash,
-        $email, 
-        $fullname
-    ]);
-    $id = $pdo->lastInsertId();
-    if($id){
-        $_SESSION["userid"]=$id;//this sets the session "userid that will allow the app to go the the index"
-        exit(json_encode(["success"=> "ok"]));
-    }else{
-        exit(json_encode(["success"=> "notok", "msg"=>print_r($result, true)])); 
- } 
+            $username,
+            $password_hash,
+            $email, 
+            $fullname
+        ]);
+
+        $id = $pdo->lastInsertId();
+        if($id){
+            $_SESSION["userid"]=$id;//this sets the session "userid that will allow the app to go the the index"
+            exit(json_encode(["success"=> "ok"]));
+        }else{
+            exit(json_encode(["success"=> "notok", "msg"=>print_r($result, true)])); 
+        } 
+    }
 }
